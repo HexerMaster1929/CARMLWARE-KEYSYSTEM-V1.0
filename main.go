@@ -248,8 +248,8 @@ func main() {
 	})
 	// </editor-fold>
 
-	var PRT = envPortOr("3000")
-	err = app.Listen(`0.0.0.0:${PRT}`)
+	
+	err = app.Listen(`0.0.0.0:8080`)
 	if err != nil {
 		log.Panicln(err)
 	}
@@ -379,14 +379,7 @@ func checkKey(key string, ip string) bool {
 	return cookieTime.Unix() < time.Now().Add(time.Hour*24).Unix()
 }
 
-func envPortOr(port string) string {
-  // If `PORT` variable in environment exists, return it
-  if envPort := os.Getenv("PORT"); envPort != "" {
-    return ":" + envPort
-  }
-  // Otherwise, return the value of `port` variable from function argument
-  return ":" + port
-}
+
 
 // <editor-fold desc="donator key">
 func genKeyStub(ip string) (string, error) {
